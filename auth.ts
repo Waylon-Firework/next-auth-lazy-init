@@ -123,7 +123,9 @@ const config = {
   debug: process.env.NODE_ENV !== "production" ? true : false,
 } satisfies NextAuthConfig
 
-export const { handlers, auth, signIn, signOut } = NextAuth(config)
+export const { handlers, auth, signIn, signOut } = NextAuth((request) => {
+  return config
+})
 
 declare module "next-auth" {
   interface Session {
